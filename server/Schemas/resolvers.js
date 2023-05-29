@@ -1,7 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User } = require("../models");
 const { signToken } = require('../utils/auth');
-
+// added query resolvers to find user by id and handle logged in user
 const resolvers = {
     Query: {
         users: async () => {
@@ -17,6 +17,7 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in')
         }
     },
+    // added mutations to add user, login and to save and remove books
     Mutation: {
         addUser: async (parent, { username, email, password }) => {
             const user = await User.create({ username, email, password })
