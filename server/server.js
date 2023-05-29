@@ -8,6 +8,7 @@ const routes = require('./routes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+// added apollo server connection with authentification
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -27,7 +28,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-
+// starting apollo server
 const startApolloServer = async () => {
   await server.start();
   server.applyMiddleware({ app });
